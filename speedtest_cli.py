@@ -14,7 +14,7 @@
 #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #    License for the specific language governing permissions and limitations
 #    under the License.
-
+import collections
 import os
 import re
 import sys
@@ -491,8 +491,7 @@ def closestServers(client, all=False):
     del servers
     return closest
 
-
-def getBestServer(servers):
+def getBestServers(servers):
     """Perform a speedtest.net latency request to determine which
     speedtest.net server has the lowest latency
     """
@@ -524,10 +523,17 @@ def getBestServer(servers):
             h.close()
         avg = round((sum(cum) / 6) * 1000, 3)
         results[avg] = server
-    fastest = sorted(results.keys())[0]
-    best = results[fastest]
-    best['latency'] = fastest
+    return collections.OrderedDict(sorted(results.items()))
 
+def getBestServer(servers):
+    """Perform a speedtest.net latency request to determine which
+    speedtest.net server has the lowest latency
+    """
+    fastest_servers = getBestServers(servers)
+    fastest_server = fastest_servers.items()[0]
+    fastest = fastest_server[0]
+    best = fastest_server[1]
+    best['latency'] = fastest
     return best
 
 

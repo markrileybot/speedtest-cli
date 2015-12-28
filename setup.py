@@ -66,11 +66,12 @@ setup(
     author_email='matt@sivel.net',
     url='https://github.com/sivel/speedtest-cli',
     license='Apache License, Version 2.0',
-    py_modules=['speedtest_cli'],
+    py_modules=['speedtest_cli', 'speedtest_service'],
     entry_points={
         'console_scripts': [
             'speedtest=speedtest_cli:main',
-            'speedtest-cli=speedtest_cli:main'
+            'speedtest-cli=speedtest_cli:main',
+            'speedtest-service=speedtest_service:main'
         ]
     },
     classifiers=[
