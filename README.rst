@@ -14,6 +14,18 @@ speedtest.net
         :target: https://pypi.python.org/pypi/speedtest-cli/
         :alt: License
 
+quickstart
+----------
+
+Run a test against the 10 best servers every minute
+
+::
+	
+	git clone https://github.com/markrileybot/speedtest-cli.git
+	cd speedtest-cli
+	sudo pip install .	
+	while [ 1 ]; do date; speedtest-service > results.json; sleep 60; done
+
 Versions
 --------
 
