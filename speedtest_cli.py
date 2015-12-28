@@ -482,7 +482,7 @@ def closestServers(client, all=False):
     for d in sorted(servers.keys()):
         for s in servers[d]:
             closest.append(s)
-            if len(closest) == 5 and not all:
+            if len(closest) == 10 and not all:
                 break
         else:
             continue
